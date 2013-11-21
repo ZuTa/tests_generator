@@ -65,9 +65,9 @@ class BaseTestGenerator(object):
         f.close()
 
     def run_author_solution(self, input_file):
-        return self.runner(self.author_solution, input_file)
+        return self.runner.run(self.author_solution, input_file)
 
-    def run(self):
+    def generate(self):
         """
         Generates input and output tests
         """
@@ -82,14 +82,3 @@ class BaseTestGenerator(object):
             result = self.run_author_solution(input_test_path)
 
             self.writeto(output_test_path, result)
-
-            print input_test_path, output_test_path, result
-
-class Concrete(BaseTestGenerator):
-    def generate_inputs(self):
-        yield 'Hello! I\'m a test!\n'
-
-def main():
-    runner = Concrete(Lang.CSharp, '')
-
-main()
