@@ -38,4 +38,4 @@ To generate test set for your own problem(s) - you have to:
 	2. Implement abstract method - generate_inputs(). This method should create input tests and 
 	   yield them to the caller (python generator).
 	3. Create an object of your test generator class.
-	4. On created object call generate() method.
+	4. Call generate() method on created object.
