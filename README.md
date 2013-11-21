@@ -11,8 +11,8 @@ Supported languages:
 To add support for another language - you have to:
 
 	1. Create new class inherited from BaseRunner class.
-	2. Implement abstract method - create_run_command(). This method should return shell command to compile 
-	   and run author's solution with specified input test. 
+	2. Implement abstract method - create_run_command(). This method should return shell 
+	   command to compile and run author's solution with specified input test. 
 
 Usage:
 
