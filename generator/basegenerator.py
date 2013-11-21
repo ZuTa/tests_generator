@@ -1,5 +1,4 @@
 from abc import ABCMeta, abstractmethod
-import random
 
 from runners.csharprunner import CSharpRunner
 from runners.pythonrunner import PythonRunner
@@ -10,9 +9,6 @@ class Lang:
 class BaseTestGenerator(object):
     """Base class for test generators"""
     __metaclass__ = ABCMeta
-
-    rand_int = lambda self, n: random.randint(0, n)
-    rand_int_interval = lambda self, x, y: random.randint(x, y)
 
     def __init__(
         self,
