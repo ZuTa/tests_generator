@@ -1,7 +1,7 @@
 Tests Generator
 ===============
 
-This is a python package which consists of basic classes for generating tests for ACM-like problems.
+This is a python package which consists of a basic classes for generating tests for ACM-like problems.
 
 Sample
 ------
