@@ -28,6 +28,7 @@ class SampleTestsGenerator(BaseTestsGenerator):
 
         return chain(easy, hard)
 
+# Create test generator and use author's solution in Python
 py_generator = SampleTestsGenerator(
     Lang.Python,
     'author_solution.py',
@@ -39,3 +40,14 @@ py_generator = SampleTestsGenerator(
 
 py_generator.generate()
 
+# Create test generator and use author's solution in C#
+csharp_generator = SampleTestsGenerator(
+    Lang.CSharp,
+    'author_solution.cs',
+    test_name_format = '{0:03}',
+    input_path = 'Tests/',
+    output_path = 'Tests/',
+    input_ext = '.dat',
+    output_ext = '.ans')
+
+csharp_generator.generate()
