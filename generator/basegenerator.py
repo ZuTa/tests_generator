@@ -88,7 +88,7 @@ class BaseTestsGenerator(object):
         }[lang]
 
     def create_test_name(self):
-        '''Creates test name using the special format
+        '''Creates test name using the specific format
 
         Parameters
         ----------

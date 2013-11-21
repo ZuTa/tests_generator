@@ -3,16 +3,42 @@ import subprocess
 import shlex
 
 class BaseRunner(object):
+    '''Represents a base class for runners of specific language'''
+
     __metaclass__ = ABCMeta
 
     @abstractmethod
     def create_run_command(self, path_to_source, path_to_input_file):
+        '''An abstract method to create a specific run & compile shell command
+
+        Parameters
+        ----------
+        path_to_source : string
+                path to the source file
+        path_to_input_file : string
+                path to the input file
+
+        Returns
+        -------
+        string - shell command to compile(and then execute) specified source file
+        '''
         pass
 
-    def prepare_path(self, path):
-         return path.replace(' ','\ ')
+    def prepare_path(self, path): return path.replace(' ','\ ')
 
     def run(self, path_to_source, path_to_input_file):
+        '''Compliles and then runs specified source file with correspond input file
+        Parameters
+        ----------
+        path_to_source : string
+                path to the source file
+        path_to_input_file : string
+                path to the input file
+
+        Returns
+        -------
+        string - the result of execution
+        '''
         prepared_path_to_input_file = self.prepare_path(path_to_input_file)
         prepared_path_to_source = self.prepare_path(path_to_source)
 
