@@ -6,7 +6,7 @@ from runners.pythonrunner import PythonRunner
 class Lang:
     Python, CSharp = xrange(2)
 
-class BaseTestGenerator(object):
+class BaseTestsGenerator(object):
     """Base class for test generators"""
     __metaclass__ = ABCMeta
 

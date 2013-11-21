@@ -1,11 +1,11 @@
 *.py[cod]
 
-samples/*.in
-samples/*.out
-samples/*.dat
-samples/*.ans
-samples/*.sol
-samples/*.txt
+/samples/*.in
+/samples/*.out
+/samples/*.dat
+/samples/*.ans
+/samples/*.sol
+/samples/*.txt
 
 # C extensions
 *.so
