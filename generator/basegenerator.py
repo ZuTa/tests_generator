@@ -119,7 +119,7 @@ class BaseTestsGenerator(object):
         -------
         '''
 
-        f = open(path, 'w')
+        f = open(path, 'wb')
 
         f.write(content)
 
