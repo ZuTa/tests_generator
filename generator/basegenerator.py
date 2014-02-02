@@ -20,7 +20,8 @@ class BaseTestsGenerator(object):
         input_path = '',
         output_path = '',
         input_ext = '.dat',
-        output_ext = '.ans'):
+        output_ext = '.ans',
+        start_test_from = 1):
         '''Creates an instance of base test generator class
 
         Parameters
@@ -44,6 +45,9 @@ class BaseTestsGenerator(object):
         output_ext : string
                 [optional] an extension for the output file's names. This parameter have to start with dot('.')
                 By default, '.ans'
+        start_test_from : int
+                [optional] This is a start value of test's identifier. By default is 1.
+
         '''
         self.lang = lang
         self.author_solution = author_solution
@@ -53,7 +57,7 @@ class BaseTestsGenerator(object):
         self.input_ext = input_ext
         self.output_ext = output_ext
 
-        self.tests_count = 0
+        self.tests_count = start_test_from - 1
         self.runner = self.create_runner(lang)
 
     @abstractmethod
