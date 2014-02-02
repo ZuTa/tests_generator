@@ -44,6 +44,6 @@ class BaseRunner(object):
 
         command = self.create_run_command(prepared_path_to_source, prepared_path_to_input_file)
 
-        proc = subprocess.Popen([command], stdout=subprocess.PIPE, shell=True, stderr=subprocess.STDOUT)
+        proc = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, shell=True)
 
         return proc.stdout.read()
