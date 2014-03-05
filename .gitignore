@@ -2,6 +2,8 @@
 
 /samples/Tests/
 
+/samples/author_solution
+
 *.exe
 
 /.idea/
