@@ -19,7 +19,7 @@ class SampleTestsGenerator(BaseTestsGenerator):
 
     def generate_hard_inputs(self):
         for i in xrange(10):
-            yield '{} {}\n'.format(randint(-sys.maxint, sys.maxint), randint(-sys.maxint, sys.maxint))
+            yield '{} {}\n'.format(randint(-10000, 10000), randint(-10000, 10000))
 
     def generate_inputs(self):
         easy = self.generate_easy_inputs()
@@ -51,3 +51,15 @@ csharp_generator = SampleTestsGenerator(
     output_ext = '.ans')
 
 csharp_generator.generate()
+
+# Create test generator and use author's solution in C++
+cplusplus_generator = SampleTestsGenerator(
+    Lang.CPlusPlus,
+    'author_solution.cpp',
+    test_name_format = '{0:02}',
+    input_path = 'Tests/',
+    output_path = 'Tests/',
+    input_ext = '.cdat',
+    output_ext = '.cans')
+
+cplusplus_generator.generate()
