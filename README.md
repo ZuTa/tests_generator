@@ -16,19 +16,22 @@ The sample consists of two differen author's solutions (written on C# and Python
 famous two-sum problem (add two numbers). sample.py demonstrate two usages - one using
 C# source as author's solution and the other one - Python.
 
-Languages
+Languages and compilers/interpreters
 ---------
 
 Supported languages:
 
-	- Python
+	- Python 
 	- C#
+	- C++
 
 To add support for another language - you have to:
-
+ 
 	1. Create new class inherited from BaseRunner class.
 	2. Implement abstract method - create_run_command(). This method should return shell 
 	   command to compile and run author's solution with specified input test. 
+
+You can specify different compiler/interpreter in the method create_run_command() of corresponding runner.
 
 Usage
 -----
