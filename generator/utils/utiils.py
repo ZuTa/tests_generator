@@ -2,7 +2,7 @@ from random import randint
 
 
 def shuffle(collection):
-    """Shuffle the collection"""
+    """Shuffle the given collection"""
 
     for i in xrange(1, len(collection)):
         j = randint(0, i)
