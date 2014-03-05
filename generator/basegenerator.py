@@ -2,10 +2,11 @@ from abc import ABCMeta, abstractmethod
 
 from runners.csharprunner import CSharpRunner
 from runners.pythonrunner import PythonRunner
+from runners.cplusplusrunner import CPlusPlusRunner
 
 class Lang:
     '''Represents enumeration of supported languages/compilers'''
-    Python, CSharp = xrange(2)
+    Python, CSharp, CPlusPlus = xrange(3)
 
 class BaseTestsGenerator(object):
     '''Base class for test generators'''
@@ -87,8 +88,9 @@ class BaseTestsGenerator(object):
         object of correspond runner defined via specified language's identifier
         '''
         return {
-            0 : PythonRunner(),
-            1 : CSharpRunner()
+            Lang.Python:    PythonRunner(),
+            Lang.CSharp:    CSharpRunner(),
+            Lang.CPlusPlus: CPlusPlusRunner()
         }[lang]
 
     def create_test_name(self):
