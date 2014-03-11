@@ -1,5 +1,6 @@
 from baserunner import BaseRunner
 
+
 class CSharpRunner(BaseRunner):
     def create_run_command(self, path_to_source, path_to_input_file):
         execution_file = path_to_source[:path_to_source.rfind('.')] + '.exe'

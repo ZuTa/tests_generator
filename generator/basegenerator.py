@@ -4,26 +4,28 @@ from runners.csharprunner import CSharpRunner
 from runners.pythonrunner import PythonRunner
 from runners.cplusplusrunner import CPlusPlusRunner
 
+
 class Lang:
-    '''Represents enumeration of supported languages/compilers'''
+    """Represents enumeration of supported languages/compilers"""
     Python, CSharp, CPlusPlus = xrange(3)
 
+
 class BaseTestsGenerator(object):
-    '''Base class for test generators'''
+    """Base class for test generators"""
 
     __metaclass__ = ABCMeta
 
     def __init__(
-        self,
-        lang,
-        author_solution,
-        test_name_format = '{0:03}',
-        input_path = '',
-        output_path = '',
-        input_ext = '.dat',
-        output_ext = '.ans',
-        start_test_from = 1):
-        '''Creates an instance of base test generator class
+            self,
+            lang,
+            author_solution,
+            test_name_format='{0:03}',
+            input_path='',
+            output_path='',
+            input_ext='.dat',
+            output_ext='.ans',
+            start_test_from=1):
+        """Creates an instance of base test generator class
 
         Parameters
         ----------
@@ -49,7 +51,7 @@ class BaseTestsGenerator(object):
         start_test_from : int
                 [optional] This is a start value of test's identifier. By default is 1.
 
-        '''
+        """
         self.lang = lang
         self.author_solution = author_solution
         self.test_name_format = test_name_format
@@ -63,7 +65,7 @@ class BaseTestsGenerator(object):
 
     @abstractmethod
     def generate_inputs(self):
-        '''An abstract method(generator) which yields an input tests.
+        """An abstract method(generator) which yields an input tests.
 
         Parameters
         ----------
@@ -72,11 +74,13 @@ class BaseTestsGenerator(object):
         -------
         iterator
                 returns iterator over generated sequence of input tests
-        '''
+        :rtype : generator
+        """
         pass
 
-    def create_runner(self, lang):
-        '''Creates a runner by specified language
+    @staticmethod
+    def create_runner(lang):
+        """Creates a runner by specified language
 
         Parameters
         ----------
@@ -86,15 +90,15 @@ class BaseTestsGenerator(object):
         Returns
         -------
         object of correspond runner defined via specified language's identifier
-        '''
+        """
         return {
-            Lang.Python:    PythonRunner(),
-            Lang.CSharp:    CSharpRunner(),
+            Lang.Python: PythonRunner(),
+            Lang.CSharp: CSharpRunner(),
             Lang.CPlusPlus: CPlusPlusRunner()
         }[lang]
 
     def create_test_name(self):
-        '''Creates test name using the specific format
+        """Creates test name using the specific format
 
         Parameters
         ----------
@@ -102,17 +106,20 @@ class BaseTestsGenerator(object):
         Returns
         -------
         string - formatted test name
-        '''
+        """
         self.tests_count += 1
 
         return self.test_name_format.format(self.tests_count)
 
-    def create_input_test_name(self, test_name): return test_name + self.input_ext
+    def create_input_test_name(self, test_name):
+        return test_name + self.input_ext
 
-    def create_output_test_name(self, test_name): return test_name + self.output_ext
+    def create_output_test_name(self, test_name):
+        return test_name + self.output_ext
 
-    def writeto(self, path, content):
-        '''Writes a content to the specified file
+    @staticmethod
+    def write_to(path, content):
+        """Writes a content to the specified file
 
         Parameters
         ----------
@@ -123,7 +130,7 @@ class BaseTestsGenerator(object):
 
         Returns
         -------
-        '''
+        """
 
         f = open(path, 'wb')
 
@@ -132,7 +139,7 @@ class BaseTestsGenerator(object):
         f.close()
 
     def run_author_solution(self, input_file):
-        '''Runs an author's solution on specified input
+        """Runs an author's solution on specified input
 
         Parameters
         ----------
@@ -142,19 +149,19 @@ class BaseTestsGenerator(object):
         Returns
         -------
         string - result of author's solution to the specified input
-        '''
+        """
         return self.runner.run(self.author_solution, input_file)
 
     def generate(self):
-        '''Generates and stores input/output tests'''
+        """Generates and stores input/output tests"""
         for content in self.generate_inputs():
             test_name = self.create_test_name()
 
             input_test_path = self.input_path + self.create_input_test_name(test_name)
             output_test_path = self.output_path + self.create_output_test_name(test_name)
 
-            self.writeto(input_test_path, content)
+            self.write_to(input_test_path, content)
 
             result = self.run_author_solution(input_test_path)
 
-            self.writeto(output_test_path, result)
+            self.write_to(output_test_path, result)
